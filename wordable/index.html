@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Wordable! App - Guess the Word Game</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wordable! App - Guess the Word Game">
+    <meta name="author" content="Idle Boots">    
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+
+    <!-- Redirect to App Store / Play Store -->
+    <script>
+        window.onload = function() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var storeUrl;
+            const statusMessage = document.getElementById('statusMessage');
+
+            // iOS detection
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            	storeUrl = 'https://apps.apple.com/app/6737167261';
+                window.location.href = storeUrl;
+                statusMessage.innerText = 'Opening the App Store...';
+            }
+            // Android detection
+            else if (/android/i.test(userAgent)) {
+            	storeUrl = "https://play.google.com/store/apps/details?id=com.idleboots.wordable";
+                window.location.href = storeUrl;
+                statusMessage.innerText = 'Opening the Play Store...';
+            } else {
+                // Optional: Redirect to a fallback page or show a message for non-mobile users
+                storeUrl = "#";
+                // statusMessage.innerText = 'Please visit this page on an iOS or Android device to download the app.';
+                statusMessage.innerText = '';
+                document.getElementById('overlay').style.display = 'none';
+            }
+
+            document.getElementById('topShareButton').addEventListener('click', function (event) {
+    			event.preventDefault(); // Prevent the default link behavior
+    			window.location.href = storeUrl;
+    		});
+        };
+
+        function closeOverlay() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        var elem = document.querySelector('.testimonial-carousel');
+		var flkty = new Flickity( elem, {
+			// options
+			contain: true,
+			wrapAround: true,
+			autoPlay: true,
+			percentPosition: false, //carousel-cell is using px width
+		  
+		});
+
+    </script>
+
+    <style>
+        /* Style for the overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 9999; /* Ensure it stays on top of all other elements */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+/*            opacity: 0.9;*/
+            gap: 20px;
+        }
+
+        /* Style for the close button */
+        .close-btn {
+            background-color: #999;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .aligned-top {
+        	position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .close-btn:hover {
+            background-color: #ff2c2c;
+        }
+    </style>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700|Nunito:400,600,700" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/flickity/flickity.min.css">
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+</head> 
+
+<body>
+	<div class="overlay" id="overlay">
+		<!-- <button class="close-btn" onclick="closeOverlay()">Close</button> -->
+		<h3 class="site-logo" id="statusMessage">Opening App Store/Play Store...</h3>
+		<button class="close-btn" onclick="closeOverlay()">View website</button>
+	</div>
+	<div class="demo-banner py-3 text-white text-center fw-bold theme-bg-secondary text-white">Play the Wordable game for free! <a class="btn font-weight-bold ms-2 theme-btn-on-bg mt-2 mt-md-0" id="top-share-button" href="#" target="_blank"><i class="fas fa-external-link-alt me-2"></i>Play <span class="text-uppercase">Game</span></a>
+	</div>
+    <header class="header">
+	    
+        <div class="branding">
+            
+            <div class="container position-relative">
+
+				<nav class="navbar navbar-expand-lg" >
+                    <h1 class="site-logo"><a class="navbar-brand" href="#"><span class="logo-text">Wordable - Guess the Word <span class="alt rounded">App</span></span></a></h1>
+	
+				</nav>	            
+            </div><!--//container-->            
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+    
+    <section class="hero-section">
+	    <div class="container">
+		    <div class="row figure-holder">
+			    <div class="col-12 col-md-6 pt-3 pt-md-4">
+				    <h2 class="site-headline font-weight-bold mt-lg-5 pt-lg-5">Play this picture puzzle game!</h2>
+				    <div class="site-tagline mb-3">Wordable is a delightful word puzzle game where each picture hides a clever word combination. Can you guess them all? Download Wordable for free 👇</div>
+				    <div class="cta-btns">
+					    <ul class="app-stores list-unstyled list-inline mx-auto mx-md-0 d-inline-block">
+						    <li class="list-inline-item me-3"><a href="https://apps.apple.com/app/6737167261"><img class="ios" src="assets/images/appstore-apple.svg" alt="app-store"></a></li>
+						    <li class="list-inline-item"><a href="https://play.google.com/store/apps/details?id=com.idleboots.wordable"><img class="android" src="assets/images/appstore-android.svg" alt="google play"></a></li>
+					    </ul>
+				    </div>
+			    </div>
+		    </div><!--//row-->
+	    </div>
+    </section><!--//hero-section-->
+    
+    <section class="features-section py-5">
+	    <div class="container py-lg-5 position-relative">
+		    <h3 class="mb-3 text-center font-weight-bold section-heading">How to Play?</h3>
+		    <div class="row pt-5 mb-5">
+			    
+			    <div class="col-12 col-md-6 col-xl-5 offset-xl-1 d-md-block">
+				    <img class="product-figure product-figure-1 img-fluid" src="assets/images/product-figure-1.png" alt="" />
+			    </div>
+			    
+		        <div class="col-12 col-md-6 col-xl-5 pr-xl-3 pt-md-3">
+				    <div class="card rounded border-0 shadow-lg  mb-5">
+					    <div class="card-body p-4">
+							<h5 class="card-title">🌟  </i>Look at the picture – what's happening?</h5>
+							<p class="card-text">A brain being washed? That's brainwash! • With each puzzle, you'll feel the joy of cracking the code! </p>
+						</div>
+				    </div><!--//card-->
+				    
+				    <div class="card rounded border-0 shadow-lg mb-5">
+					    <div class="card-body p-4">
+					    	<h5 class="card-title">🧠  </i>Over 100+ Unique Levels!</h5>
+							<p class="card-text">• Endless fun with clever, beautifully illustrated word puzzles • More puzzles being added every week!</p>
+						</div>
+				    </div><!--//card-->
+				    <div class="card rounded border-0 shadow-lg">
+					    <div class="card-body p-4">
+							<h5 class="card-title">❤️  </i>You'll love Wordable!</h5>
+							<p class="card-text">Sharpen your mind while having a blast! • Perfect for All Ages – Simple enough for beginners, challenging enough for word masters</p>
+							<a href="https://apps.apple.com/app/6737167261"><img class="ios" src="assets/images/appstore-apple.svg" alt="app-store"></a>
+							<a href="https://play.google.com/store/apps/details?id=com.idleboots.wordable"><img class="android" src="assets/images/appstore-android.svg" alt="google play"></a>
+						</div>
+				    </div><!--//card-->
+			    </div>
+		    </div>
+		    
+		    <div class="row">
+			    <div class="col-12 col-md-6 col-xl-5 order-md-2 pr-xl-3 d-md-block">
+				    <img class="product-figure product-figure-2 img-fluid" src="assets/images/product-figure-2.png" alt="" />
+			    </div>
+			    <div class="col-12 col-md-6 col-xl-5 order-md-1 offset-xl-1 pt-xl-5">
+				    <div class="card rounded border-0 shadow-lg  mb-5">
+					    <div class="card-body p-4">
+							<h5 class="card-title"> </i>Download this delightful app 👇</h5>
+							<p class="card-text">
+								<a href="https://apps.apple.com/app/6737167261"><img class="ios" src="assets/images/appstore-apple.svg" alt="app-store"></a>
+								<a href="https://play.google.com/store/apps/details?id=com.idleboots.wordable"><img class="android" src="assets/images/appstore-android.svg" alt="google play"></a>
+							</p>
+						</div>
+				    </div><!--//card-->
+			    </div>
+			   
+		    </div>
+	    </div><!--//container-->
+	    
+    </section><!--//features-section-->
+    
+    
+    <!-- <section id="quote" class="testimonial-section py-5">
+	    <div class="py-lg-5">
+		    <h3 class="mb-5 text-center">Loved by thousands of players like you</h3>
+		    
+	        <div id="testimonial-carousel" class="testimonial-carousel">
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    
+			    <div class="carousel-cell">
+				    <div class="item-inner shadow rounded">
+					    <h5 class="mb-2">Amazing App!</h5>
+					    <div class="ratings text-primary mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+					    <div class="mb-3">App review here
+					    </div>
+					    <div class="source row">
+						    <div class="col-auto">
+						        <img class="source-profile rounded-circle" src="assets/images/users/user-1.jpg" alt="" />
+					        </div>
+						    <div class="source-info col pt-3">
+							    <div>Name here</div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>   
+
+		    <br><br><br><br>
+		    <div class="pt-20 text-center">
+			    <a href="https://apps.apple.com/app/6737167261"><img class="ios" src="assets/images/appstore-apple.svg" alt="app-store"></a>
+				<a href="https://play.google.com/store/apps/details?id=com.idleboots.wordable"><img class="android" src="assets/images/appstore-android.svg" alt="google play"></a>
+		    </div>
+		 
+	    </div>-->
+	    
+    </section><!--//testimonial-section-->
+           
+    
+    <footer class="footer theme-bg-primary">
+	    <div class="download-area py-4">
+		    <div class="container text-center">
+			    <h3 class="mb-3">Get the app</h3>
+		    <div class="section-intro mb-4 single-col-max-width mx-auto">Whether you have a few minutes or a few hours, this game is the perfect companion for a fun and rewarding brain break. Download Wordable for free now!</div>
+			    <ul class="app-stores list-unstyled list-inline mx-auto  d-inline-block">
+				    <li class="list-inline-item me-3"><a href="https://apps.apple.com/app/6737167261"><img class="ios" src="assets/images/appstore-apple.svg" alt="app-store"></a></li>
+				    <li class="list-inline-item"><a href="https://play.google.com/store/apps/details?id=com.idleboots.wordable"><img class="android" src="assets/images/appstore-android.svg" alt="google play"></a></li>
+			    </ul>
+		    </div><!--//container-->
+	    </div><!--//download-area-->
+	    <div class="container">
+		    <hr>
+	    </div>
+	    <div class="download-area py-4">
+		    <div class="container text-center">
+			    <h3 class="mb-3">Stay Connected</h3>
+		    <div class="section-intro mb-4 single-col-max-width mx-auto">Idle Boots<br>hello@idleboots.com</div>
+		    <div class="section-intro mb-4 single-col-max-width mx-auto"></div>
+		    </div><!--//container-->
+	    </div>
+
+	    <div class="footer-bottom text-center pb-5">
+            <small class="copyright pb-5">App made with <span class="sr-only">love</span>❤️ by <a href="https://www.idleboots.com/" target="_blank">Idle Boots</a></small>
+            <br>
+            <small class="copyright"><a href="https://www.idleboots.com/" target="_blank">Privacy Policy</a></small>
+	    </div>
+		
+    </footer>
+
+       
+    <!-- Javascript -->          
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/3.0.0/flickity.pkgd.min.js"></script>
+
+
+</body>
+</html> 
+
